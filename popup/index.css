@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --t-side: #e25d5a;
+    --ct-side: #24b298;
+    
+    --winner: #61b875;
+
+    --positive: var(--winner);
+    --negative: #d1475e;
+
+    --roboto: "Roboto", sans-serif;
+}
+
+body {
+    width: 800px;
+    display: 550px;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+    display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, textarea, button, span {
+    font-family: var(--roboto);
+    font-size: 24px;
+}
+
+input, button, textarea, select {
+    outline: none;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+    background-color: white;
+}
+
+.checkbox {
+    width: 12.5px;
+    height: 12.5px;
+    border: 2px solid white;
+}
+
+.checkbox[checked="true"] { background-color: rgb(36, 172, 65); }
+
+#game {
+    width: calc(800px - 14px);
+    height: calc(550px - 14px);
+    display: grid;
+    grid-template-rows: 2fr 8fr;
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    gap: 5px;
+    padding: 7px;
+    background-color: rgb(41, 41, 41);
+}

@@ -1,0 +1,91 @@
+#match-table {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 8.4fr 1fr;
+    gap: 5px;
+}
+
+#match-table > #header {
+    height: fit-content;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 4fr 3fr repeat(10, 1fr);
+    color: white;
+    font-weight: 800;
+}
+
+#match-table > #header > p {
+    text-align: center;
+    font-size: 16px;
+    padding: 2.5px 0px;
+}
+
+#match-table > #body {
+    width: 100%;
+    height: 340px;
+    overflow-y: scroll;
+}
+
+#match-table > #body > .row {
+    width: 100%;
+    height: 45px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 4fr 3fr repeat(10, 1fr);
+    background-color: rgb(54, 54, 54);
+}
+
+#match-table > #body > .row:not(:last-child) { margin-bottom: 2.5px; }
+#match-table > #body > .row > input { background-color: inherit; color: white; }
+#match-table > #body > .row > .player-info { display: flex; }
+#match-table > #body > .row > .player-info > input { padding: 2px 6px; background-color: inherit; color: white; }
+#match-table > #body > .row > .player-info > .flag { width: 25px; text-align: center; }
+#match-table > #body > .row > .player-info > .player { width: 100%; }
+
+#match-table > #body > .row > .agent-info { display: flex; }
+
+#match-table > #body > .row > .agent-info > .agent {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: gray;
+    background-image: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#match-table > #body > .row > input {
+    width: 100%;
+    height: calc(100% - 5px);
+    padding: 2.5px 0px;
+    text-align: center;
+}
+
+#match-table > #footer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5px;
+}
+
+#match-table > #footer > button {
+    height: 100%;
+    padding: 5px 10px;
+    border-radius: 2.5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: inherit;
+}
+
+#match-table > #footer > button:hover {
+    background-color: rgb(73, 73, 73);
+}

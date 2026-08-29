@@ -1,0 +1,42 @@
+{
+    "manifest_version": 3,
+    "name": "VLR Editor",
+    "version": "3.0.0",
+    "description": "Allows you to modify the VLR table to your liking.",
+
+    "permissions": [
+        "tabs",
+        "storage",
+        "scripting",
+        "activeTab"
+    ],
+
+    "host_permissions": [
+        "<all_urls>"
+    ],
+
+    "action": {
+        "default_popup": "popup/index.html",
+        "default_icon": {
+            "16": "assets/vlr-16x16.png",
+            "32": "assets/vlr-32x32.png",
+            "48": "assets/vlr-48x48.png",
+            "128": "assets/vlr-128x128.png"
+        }
+    },
+
+    "background": {
+        "service_worker": "service_worker/background.js"
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["https://www.vlr.gg/498632/sentinels-vs-fnatic-valorant-masters-toronto-2025-lr2/?game=221182&tab=overview"],
+            "js": [
+                "scripts/html2canvas.js",
+                "scripts/content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ]
+}

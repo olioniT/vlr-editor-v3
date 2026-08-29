@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles/match-info.css">
+    <link rel="stylesheet" href="styles/match-table.css">
+    <link rel="stylesheet" href="styles/modal.css">
+</head>
+<body>
+    <div id="modal">
+        <div id="overlay"></div>
+        <div id="body"></div>
+    </div>
+
+    <div id="game">
+        <div id="match-info">
+            <div class="teams" id="team-1">
+                <div class="team-info">
+                    <input type="text" class="team-name" placeholder="Team 1 name...">
+                    <input type="text" class="team-tag" maxlength="5" placeholder="T1">
+                </div>
+                <div class="rounds">
+                    <input type="number" min="0" max="99" placeholder="0" class="atk" >
+                    <span>/</span>
+                    <input type="number" min="0" max="99" placeholder="0" class="def" >
+                    <span>/</span>
+                    <input type="number" min="0" max="99" placeholder="0" class="ot" >
+                </div>
+                <div id="team-1-atk" class="teams-atk">
+                    <button class="checkbox" id="team-1-atk-first" checked="false"></button>
+                    <p>Attacking first?</p>
+                </div>
+                <div id="team-1-map-choice" class="teams-map-choice">
+                    <button class="checkbox" id="team-1-map-pick" checked="false"></button>
+                    <p>Map pick?</p>
+                </div>
+            </div>
+            <div id="map-info">
+                <select id="map">
+                    <option value="default" disabled selected hidden>Select a map...</option>
+                </select>
+                <div id="match-length">
+                    <input class="timer" id="hr" min="0" max="99" placeholder="00" type="number" >
+                    <span>:</span>
+                    <input class="timer" id="min" min="0" max="59" placeholder="00" type="number" >
+                    <span>:</span>
+                    <input class="timer" id="sec" min="0" max="59" placeholder="00" type="number" >
+                </div>
+            </div>
+            <div class="teams" id="team-2">
+                <div class="team-info">
+                    <input type="text" class="team-tag" maxlength="5" placeholder="T2">
+                    <input type="text" class="team-name" placeholder="Team 2 name...">
+                </div>
+                <div class="rounds">
+                    <input type="number" min="0" max="99" placeholder="0" class="atk" >
+                    <span>/</span>
+                    <input type="number" min="0" max="99" placeholder="0" class="def" >
+                    <span>/</span>
+                    <input type="number" min="0" max="99" placeholder="0" class="ot" >
+                </div>
+                <div id="team-2-atk" class="teams-atk">
+                    <p>Attacking first?</p>
+                    <button class="checkbox" id="team-2-atk-first" checked="false"></button>
+                </div>
+                <div id="team-2-map-choice" class="teams-map-choice">
+                    <p>Map pick?</p>
+                    <button class="checkbox" id="team-2-map-pick" checked="false"></button>
+                </div>
+            </div>
+        </div>
+        <div id="match-table">
+            <div id="header">
+                <p id="player">PLAYER</p>
+                <p id="agents">AGENTS</p>
+                <p id="rating">R</p>
+                <p id="acs">ACS</p>
+                <p id="kills">K</p>
+                <p id="deaths">D</p>
+                <p id="assists">A</p>
+                <p id="kast">KAST</p>
+                <p id="adr">ADR</p>
+                <p id="hs">HS%</p>
+                <p id="fk">FK</p>
+                <p id="fd">FD</p>
+            </div>
+            <div id="body">
+            </div>
+            <div id="footer">
+                <button id="clear">Clear Table</button>
+                <button id="screenshot">Take Screenshot</button>
+                <button id="save">Save Table</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/util.js"></script>
+    <script src="scripts/table.js"></script>
+    <script src="scripts/modal.js"></script>
+    <script src="scripts/popup.js"></script>
+</body>
+</html>

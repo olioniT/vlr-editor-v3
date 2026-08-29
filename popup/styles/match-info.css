@@ -1,0 +1,114 @@
+#match-info {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 3.5fr 3fr 3.5fr;
+    gap: 5px;
+}
+
+#match-info > .teams {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 10px;
+}
+
+#match-info > #team-1 { display: flex; align-items: flex-start; }
+#match-info > #team-2 { display: flex; align-items: flex-end; }
+
+#match-info > .teams > .team-info {
+    width: 100%;
+    height: 30px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(54, 54, 54);
+    border-radius: 2.5px;
+    /* padding: 5px; */
+}
+
+#match-info > #team-1 > .team-info { grid-template-columns: 7.75fr 2.25fr; }
+#match-info > #team-2 > .team-info { grid-template-columns: 2.25fr 7.75fr; }
+
+#match-info > .teams > .team-info > input {
+    width: calc(100% - 16px);
+    height: fit-content;
+    padding: 2px 8px;
+    background-color: inherit;
+    color: white;
+    font-size: 14px;
+}
+
+#match-info > #team-1 > .team-info > input { text-align: left; }
+#match-info > #team-2 > .team-info > input { text-align: right; }
+
+#match-info > .teams > .rounds {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    padding-bottom: 0px;
+    background-color: rgb(54, 54, 54);
+    color: white;
+    border-radius: 2.5px;
+}
+
+#match-info > .teams > .rounds > input {
+    width: 25px;
+    height: 100%;
+    padding: 0px 2.5px;
+    text-align: center;
+    background-color: inherit;
+    color: white;
+    border-radius: 2.5px;
+}
+
+#match-info > .teams > .teams-atk {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: white;
+}
+
+#match-info > .teams > .teams-map-choice {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: white;
+}
+
+#match-info > .teams > .teams-atk > p, .teams-map-choice > p {
+    font-size: 14px;
+}
+
+#match-info > #map-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 7.5px;
+    padding-top: 10px;
+}
+
+#match-info > #map-info > #map { width: 90%; padding: 5px 6px; background-color: rgb(54, 54, 54); color: white; border-radius: 2.5px; }
+#match-info > #map-info > #map > option { width: 90%; padding: 3px 6px; border: none; }
+
+#match-info > #map-info > #match-length {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    background-color: rgb(54, 54, 54);
+    color: white;
+    border-radius: 2.5px;
+}
+
+#match-info > div > #match-length > input {
+    width: 20px;
+    padding: 5px;
+    text-align: center;
+    background-color: inherit;
+    color: white;
+}
