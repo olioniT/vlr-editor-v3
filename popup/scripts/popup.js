@@ -4,6 +4,26 @@ let agentSelectButton = undefined
 let agentSelected = undefined
 
 async function initialise() {
+    const [tab] = await chrome.tabs.query({
+        active: true,
+        currentWindow: true
+    })
+
+    if (!tab.url.includes("www.vlr.gg")) {
+        document.querySelector("#game").style.display = "none"
+        document.querySelector("#alert").style.display = "flex"
+    } else {
+        document.querySelector("#game").style.display = "flex"
+        document.querySelector("#alert").style.display = "none"
+    }
+
+    // if (tab.url === "https://www.vlr.gg/498632/sentinels-vs-fnatic-valorant-masters-toronto-2025-lr2/?game=221182&tab=overview") {
+    //     chrome.tabs.sendMessage(tab.id, {
+    //         action: "UPDATE_TABLE",
+    //         payload: game
+    //     })
+    // }
+
     await populateMapOptions()
 
     populateTableRows()
