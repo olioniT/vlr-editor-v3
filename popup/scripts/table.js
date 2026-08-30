@@ -28,7 +28,7 @@ function populateTableRows() {
 
 function assignEnforceMinMax() {
     Array.from(document.querySelectorAll('input[type="number"')).forEach((input) => {
-        input.addEventListener("input", (el) => enforceMinMax(el))
+        input.addEventListener("input", () => enforceMinMax(input))
     })
 }
 
@@ -74,6 +74,13 @@ function assignButtonFunctions() {
         btn.addEventListener("click", () => {
             if (btn.attributes.checked.value == "false") { btn.attributes.checked.value = true; return; }
             if (btn.attributes.checked.value == "true") { btn.attributes.checked.value = false; return; }
+        })
+    })
+
+    document.querySelector("#vlr").addEventListener("click", async () => {
+        chrome.tabs.create({
+            url: "https://www.vlr.gg/498632/sentinels-vs-fnatic-valorant-masters-toronto-2025-lr2/?game=221182&tab=overview",
+            active: true
         })
     })
 

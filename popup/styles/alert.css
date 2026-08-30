@@ -1,0 +1,13 @@
+#alert > button {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 25px;
+    border-radius: 2.5px;
+    background-color: inherit;
+    color: white;
+    font-size: 18px;
+}
+
+#alert > button:hover {
+    background-color: rgb(255, 101, 101);
+}

@@ -17,13 +17,6 @@
     --roboto: "Roboto", sans-serif;
 }
 
-body {
-    width: 800px;
-    display: 550px;
-    justify-content: center;
-    align-items: center;
-}
-
 ::-webkit-scrollbar {
     -ms-overflow-style: none;  
     scrollbar-width: none;  
@@ -69,4 +62,18 @@ button {
     gap: 5px;
     padding: 7px;
     background-color: rgb(41, 41, 41);
+}
+
+#alert {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    gap: 10px;
+    font-size: 20px;
+    background-color: rgb(233, 68, 68);
+    color: rgb(95, 8, 8);
 }

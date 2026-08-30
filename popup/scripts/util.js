@@ -16,16 +16,15 @@ function createRow(index) {
             <button id="r${index + 1}-agent-2" src="../assets/icons/plus.svg" class="agent" agent="none">+</button>
             <button id="r${index + 1}-agent-3" src="../assets/icons/plus.svg" class="agent" agent="none">+</button>
         </div>
-        <input id="r${index + 1}-rating2" placeholder="0" type="number" min="0" max="2.0">
         <input id="r${index + 1}-acs" placeholder="0" type="number" min="0" max="999">
-        <input id="r${index + 1}-k" placeholder="0" type="number" maxlength="2">
-        <input id="r${index + 1}-d" placeholder="0" type="number" maxlength="2">
-        <input id="r${index + 1}-a" placeholder="0" type="number" maxlength="2">
+        <input id="r${index + 1}-k" placeholder="0" type="number" min="0" max="99">
+        <input id="r${index + 1}-d" placeholder="0" type="number" min="0" max="99">
+        <input id="r${index + 1}-a" placeholder="0" type="number" min="0" max="99">
         <input id="r${index + 1}-kast" placeholder="0%" type="number" min="0" max="100">
-        <input id="r${index + 1}-adr" placeholder="0" type="number" maxlength="2">
+        <input id="r${index + 1}-adr" placeholder="0" type="number" min="0" max="999">
         <input id="r${index + 1}-hsp" placeholder="0%" type="number" min="0" max="100">
-        <input id="r${index + 1}-fb" placeholder="0" type="number" maxlength="2">
-        <input id="r${index + 1}-fd" placeholder="0" type="number" maxlength="2">
+        <input id="r${index + 1}-fb" placeholder="0" type="number" min="0" max="99">
+        <input id="r${index + 1}-fd" placeholder="0" type="number" min="0" max="99">
     </div>
     `
 }
@@ -65,6 +64,10 @@ async function getMaps() {
 }
 
 function enforceMinMax(input) {
+    console.log("EDITING INPUT:", input)
+
+    console.log(input.value)
+
     if (input.value != "") {
         if (parseInt(input.value) > parseInt(input.max)) {
             input.value = input.value.slice(0, -1)
@@ -142,6 +145,8 @@ function determineWinner() {
         }
     })
 
+    if (team1Wins === team2Wins) { return 0 }
+
     return team1Wins > team2Wins ? 1 : 2
 }
 
@@ -189,8 +194,6 @@ function getDataOfRows(rowsArr) {
                     "name": cellValue,
                     "icon": cell.style.backgroundImage.slice(4, -1).replace(/"/g, "")
                 }
-
-                // rowObj[cellID] = cellValue
             }
         })
         rowObj["kd-diff"] = kd > 0 ? `+${kd}` : kd.toString()
