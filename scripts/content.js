@@ -244,7 +244,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 
     if (message.action === "SCREENSHOT") {
-        const board = document.querySelector("div.col-container")
+        const board = document.querySelector("div.vm-stats")
 
         html2canvas(board).then(canvas => {
             canvas.toBlob(blob => {
