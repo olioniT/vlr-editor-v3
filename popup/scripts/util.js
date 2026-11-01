@@ -99,7 +99,7 @@ function mutuallyExcludeCheckboxes(checkboxA, checkboxB) {
 
 function removeContextMenuInteraction(el) {
     el.addEventListener("contextmenu", (e) => {
-        // e.preventDefault()
+        e.preventDefault()
     })
 }
 

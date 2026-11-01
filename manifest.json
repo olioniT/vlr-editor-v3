@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "VLR Editor",
-    "version": "3.0.0",
+    "version": "3.1.6",
     "description": "Allows you to modify the VLR table to your liking.",
 
     "permissions": [

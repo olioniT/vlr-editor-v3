@@ -16,16 +16,30 @@ if (window.location.href !== "https://www.vlr.gg/498632/sentinels-vs-fnatic-valo
     document.querySelector("div.vm-stats-container").style.boxShadow = "#5f5f5f 0px 2.5px 15px 2.5px"
 
     document.querySelector("div.footer").remove()
+    document.querySelector("div.media-vw").remove()
     document.querySelector("header.header").remove()
     document.querySelector("div.col.mod-1").remove()
     document.querySelector("div.col.mod-2").remove()
+    document.querySelector("div.vm-stats-loading").remove()
     document.querySelector("div > div.vm-stats-tabnav").parentElement.remove()
 
-    document.querySelectorAll("div.ovw-table").forEach(table => { table.style.gridTemplateColumns = "minmax(max-content, 1fr) 36px max-content 32px 36px 36px 36px 28px 28px 32px" })
+    document.querySelectorAll("div.ovw-table").forEach(table => { table.style.gridTemplateColumns = "minmax(max-content, 1fr) max-content repeat(9, 36px)" })
     document.querySelectorAll("div.ovw-row.mod-head > div.ovw-th[data-col='rating2']").forEach(cell => { cell.remove() })
     document.querySelectorAll("div.ovw-row > div.ovw-cell[data-col='rating2']").forEach(cell => { cell.remove() })
 
     document.querySelector("div.col-container > div.col.mod-3").prepend(document.querySelector("div.wf-card > .vm-stats"))
+
+    Array.from(document.querySelector("body").children).forEach((child, index) => {
+        if (child.tagName !== "SCRIPT") {
+            if (child.tagName === "DIV" && child.id !== "wrapper") {
+                child.remove()
+            }
+
+            if (child.tagName !== "DIV") {
+                child.remove()
+            }
+        }
+    })
 
     Array.from(document.querySelectorAll("div.col.mod-3 > div")).forEach((div, index) => {
         if (index !== 0) { div.remove() }
@@ -100,9 +114,27 @@ if (window.location.href !== "https://www.vlr.gg/498632/sentinels-vs-fnatic-valo
     })
 
     Array.from(document.querySelectorAll("div.ovw-cell span.side.mod-both")).forEach(cell => {
-        cell.innerHTML = "0"
+        const cellGrandParent = cell.parentElement.parentElement
+
         cell.className = "side mod-both"
+
+        if (cellGrandParent.attributes.getNamedItem("data-col") !== null) {
+            const cellData = cellGrandParent.attributes.getNamedItem("data-col").value
+            if (cellData === "kast" || cellData === "hsp") {
+                cell.innerHTML = "0%"
+            } else {
+                cell.innerHTML = "0"
+            }
+        } else {
+            cell.innerHTML = "0"
+        }
     })
+    
+    document.querySelector("div.col-container").style.position = "absolute"
+    document.querySelector("div.col-container").style.display = "flex"
+    document.querySelector("div.col-container").style.justifyContent = "center"
+    document.querySelector("div.col-container").style.alignItems = "center"
+    document.querySelector("div.col-container").style.zIndex = 10000000000000
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -176,9 +208,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
 
         Array.from(document.querySelectorAll("i.flag")).forEach((playerFlag, index) => {
-            if (game.playerInfo[index].player.flag.trim() !== "") {
-                playerFlag.className = `flag mod-${game.playerInfo[index].player.flag.toLowerCase().trim()}`
-            }
+            let flag = game.playerInfo[index].player.flag.toLowerCase().trim()
+                playerFlag.className = `flag mod-${flag !== "" ? flag : "NZ"}`
         })
         
         Array.from(document.querySelectorAll("div.ovw-player-name")).forEach((playerName, index) => {
@@ -217,10 +248,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 if (cellWrapper.attributes.getNamedItem("data-col") !== null) {
                     let cellID = cellWrapper.attributes["data-col"].value.split("-").at(0)
 
+                    console.log(cellID)
+
                     if (cellID !== "fk" && cellID !== "kd") {
                         let cellValue = game.playerInfo[rowIndex][cellID] !== "" ? game.playerInfo[rowIndex][cellID] : "0"
                         
-                        cell.innerHTML = cellValue
+                        if (cellID === "kast" || cellID === "hsp") {
+                            cell.innerHTML = `${cellValue}%`
+                        } else {
+                            cell.innerHTML = cellValue
+                        }
                     } else {
                         let cellValue = game.playerInfo[rowIndex][`${cellID}-diff`] !== "" ? game.playerInfo[rowIndex][`${cellID}-diff`] : "0"
 
@@ -245,8 +282,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     if (message.action === "SCREENSHOT") {
         const board = document.querySelector("div.vm-stats")
+        const clone = board.cloneNode(true);
 
-        html2canvas(board).then(canvas => {
+        document.querySelector("#wrapper").appendChild(clone);
+
+        html2canvas(clone).then(canvas => {
             canvas.toBlob(blob => {
                 const date = new Date().toISOString().split("T")[0]
                 const time = new Date().toISOString().split("T")[1].split(".")[0].split(":").join("-")
@@ -255,6 +295,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 const url = URL.createObjectURL(blob)
                 
                 chrome.runtime.sendMessage({ action: "DOWNLOAD", url, filename })
+
+                clone.remove()
             })
         })
     }
