@@ -231,12 +231,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         Array.from(document.querySelectorAll("div.ovw-agents")).forEach((row, rowIndex) => {
             let { agents, ...playerInfo } = game.playerInfo[rowIndex]
             
+            console.log("AGENTS:", agents)
+
             if (Array.from(row.children).length > 0) { row.replaceChildren() }
 
             Object.values(agents).forEach((agent) => {
                 if (agent.name.trim() !== "none") {
-                    if (agent.name.trim() === "kay/o") { row.appendChild(createAgentBlock("kayo")) }
-                    else { row.appendChild(createAgentBlock(agent.name)) }
+                    if (agent.name.trim() === "kay/o") { row.appendChild(createAgentBlock("kayo", agent.icon)) }
+                    else { row.appendChild(createAgentBlock(agent.name, agent.icon)) }
                 }
             })
         })
@@ -310,7 +312,7 @@ function isPositiveOrNegative(score) {
     return ""
 }
 
-function createAgentBlock(agentName) {
+function createAgentBlock(agentName, agentIcon) {
     const span = document.createElement("span")
     const img = document.createElement("img")
 
@@ -318,8 +320,10 @@ function createAgentBlock(agentName) {
     
     img.title = agentName
     img.alt = agentName.toLowerCase()
-    img.src = `/img/vlr/game/agents/${agentName.toLowerCase()}.png`
+    img.src = agentIcon
 
+
+    
     span.appendChild(img)
     
     return span
