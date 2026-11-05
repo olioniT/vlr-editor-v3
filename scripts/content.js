@@ -23,7 +23,7 @@ if (window.location.href !== "https://www.vlr.gg/498632/sentinels-vs-fnatic-valo
     document.querySelector("div.vm-stats-loading").remove()
     document.querySelector("div > div.vm-stats-tabnav").parentElement.remove()
 
-    document.querySelectorAll("div.ovw-table").forEach(table => { table.style.gridTemplateColumns = "minmax(max-content, 1fr) max-content repeat(9, 36px)" })
+    document.querySelectorAll("div.ovw-table").forEach(table => { table.style.gridTemplateColumns = "1fr max-content 0.25fr minmax(max-content, 0.5fr) repeat(7, 0.25fr)" })
     document.querySelectorAll("div.ovw-row.mod-head > div.ovw-th[data-col='rating2']").forEach(cell => { cell.remove() })
     document.querySelectorAll("div.ovw-row > div.ovw-cell[data-col='rating2']").forEach(cell => { cell.remove() })
 
